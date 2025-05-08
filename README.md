@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!LOGIN>
 <html>
 <head>
   <title>Facebook – log in or sign up</title>
